@@ -307,22 +307,25 @@
           <p class="sub-heading mb-5">Kukusanku_Id<a href=""></a></p>  
         </div>
       </div>
+         
       <div class="row justify-content-center">
         <div class="col-md-10 p-5 form-wrap bg-white rounded shadow-sm">
           <form action="javascript:void(0);">
             <div class="row mb-4">
               <div class="form-group col-md-4">
-                <label for="name" class="label">Nama</label>
+                <label for="name" class="label">Nama Costumer</label>
                 <div class="form-field-icon-wrap">
                   <input type="text" class="form-control" id="name" required>
                 </div>
               </div>
               <div class="form-group col-md-4">
-                <label for="phone" class="label">Nomor Handphone</label>
+                <label for="phone" class="label">Nomor WhatsApp</label>
                 <div class="form-field-icon-wrap">
                   <input type="text" class="form-control" id="phone" required>
                 </div>
               </div>
+  
+      
               <div class="form-group col-md-12">
                 <label class="label">Pilih Menu Dimsum dan Jumlah Porsi</label>
                 <div id="dimsum-options" class="dimsum-options-wrap">
@@ -338,7 +341,8 @@
                 </div>
                 <button type="button" class="btn btn-sm btn-secondary mt-2" onclick="addDimsumOption()">Tambah Menu</button>
               </div>
-              <!-- Metode Pembayaran -->
+  
+              <!-- Payment Method -->
               <div class="form-group col-md-4">
                 <label for="payment-method" class="label">Metode Pembayaran</label>
                 <select class="form-control" id="payment-method" required>
@@ -346,10 +350,22 @@
                   <option value="Transfer">Transfer</option>
                 </select>
               </div>
-              <!-- Alamat Penerima -->
+
+                    <!-- Delivery Option -->
+                    <div class="form-group col-md-4">
+                      <label for="delivery-option" class="label">Pengiriman Pesanan</label>
+                      <select class="form-control" id="delivery-option" required>
+                        <option value="Antar ke Tempat Customer">Antar ke Rumah</option>
+                        <option value="COD (Bayar di Tempat)">COD (Bayar di Tempat)</option>
+                        <option value="Datang ke Kedai">Datang ke Kedai</option>
+                      </select>
+                    </div>
+        
+  
+              <!-- Address Field -->
               <div class="form-group col-md-12">
                 <label for="address" class="label">Alamat Penerima</label>
-                <input type="text" class="form-control" id="address" placeholder="Masukkan Alamat Lengkap" required>
+                <input type="text" class="form-control" id="address" placeholder="*Mohon isi alamat jika pesanan ingin diantar kerumah atau (COD)" required>
               </div>
             </div>
             <div class="row justify-content-center">
@@ -364,7 +380,7 @@
   </div>
   
   <script>
-  // Fungsi untuk menambah menu dimsum
+  // Function to add a new dimsum menu option
   function addDimsumOption() {
     const optionContainer = document.getElementById('dimsum-options');
     const newOption = document.createElement('div');
@@ -383,10 +399,11 @@
     optionContainer.appendChild(newOption);
   }
   
-  // Fungsi untuk mengirim pesanan melalui WhatsApp
+  // Function to send the order via WhatsApp
   function sendWhatsAppOrder() {
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
+    const deliveryOption = document.getElementById('delivery-option').value;
     const paymentMethod = document.getElementById('payment-method').value;
     const address = document.getElementById('address').value;
   
@@ -398,14 +415,14 @@
       menuList += `${index + 1}. ${menu} - ${portion} porsi\n`;
     });
   
-    const message = `Halo, saya ${name} ingin memesan:\n${menuList}\nNomor HP: ${phone}\nMetode Pembayaran: ${paymentMethod}\nAlamat: ${address}`;
+    const message = `Halo, saya ${name} ingin memesan:\n${menuList}\nNomor HP: ${phone}\nOpsi Pengambilan Pesanan: ${deliveryOption}\nMetode Pembayaran: ${paymentMethod}\nAlamat: ${address}`;
     const whatsappUrl = `https://wa.me/6287874254138?text=${encodeURIComponent(message)}`;
   
-    // Redirect ke WhatsApp
+    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
   }
   </script>
-          
+  
         <footer class="ftco-footer">
           <div class="container">
             
