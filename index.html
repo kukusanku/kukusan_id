@@ -299,7 +299,6 @@
         </html>
         
         <!-- .section -->
-
         <div class="section bg-light" data-aos="fade-up" id="section-reservation">
           <div class="container">
             <div class="row section-heading justify-content-center mb-5">
@@ -359,7 +358,53 @@
           </div>
         </div>
         
-        <script src="script.js"></script> <!-- Link ke file JavaScript terpisah -->
+        <script>
+        // Fungsi untuk menambah menu dimsum
+        function addDimsumOption() {
+          const optionContainer = document.getElementById('dimsum-options');
+          const newOption = document.createElement('div');
+          newOption.classList.add('form-field-icon-wrap', 'mb-2', 'd-flex', 'align-items-center');
+        
+          newOption.innerHTML = `
+            <select class="form-control dimsum-select mr-2">
+              <option value="Dimsum Ori">Dimsum Ori</option>
+              <option value="Dimsum Mentai">Dimsum Mentai</option>
+              <option value="Dimsum Mentai Spicy">Dimsum Mentai Spicy</option>
+              <option value="Dimsum Mentai Cheese">Dimsum Mentai Cheese</option>
+            </select>
+            <input type="number" class="form-control dimsum-portion" placeholder="Jumlah Porsi" min="1">
+          `;
+        
+          optionContainer.appendChild(newOption);
+        }
+        
+        // Fungsi untuk mengirim pesanan melalui WhatsApp
+        function sendWhatsAppOrder() {
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+          const date = document.getElementById('date').value;
+          const time = document.getElementById('time').value;
+        
+          if (!date || !time) {
+            alert("Tanggal dan waktu pemesanan harus diisi!");
+            return;
+          }
+        
+          let menuList = '';
+          const dimsumOptions = document.querySelectorAll('.dimsum-options-wrap .form-field-icon-wrap');
+          dimsumOptions.forEach((option, index) => {
+            const menu = option.querySelector('.dimsum-select').value;
+            const portion = option.querySelector('.dimsum-portion').value;
+            menuList += `${index + 1}. ${menu} - ${portion} porsi\n`;
+          });
+        
+          const message = `Halo, saya ${name} ingin memesan:\n${menuList}\nTanggal Pesan: ${date}\nWaktu Ambil: ${time}\nNomor HP: ${phone}`;
+          const whatsappUrl = `https://wa.me/6287874254138?text=${encodeURIComponent(message)}`;
+        
+          // Redirect ke WhatsApp
+          window.open(whatsappUrl, '_blank');
+        }
+        </script>
         
 
 
