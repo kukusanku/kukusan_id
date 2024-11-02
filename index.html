@@ -338,9 +338,18 @@
                       </div>
                       <button type="button" class="btn btn-sm btn-secondary mt-2" onclick="addDimsumOption()">Tambah Menu</button>
                     </div>
+                    <!-- Metode Pembayaran -->
                     <div class="form-group col-md-4">
-                      <label for="date" class="label">Tanggal Pemesanan</label>
-                      <input type="text" class="form-control" id="date" placeholder="YYYY-MM-DD" required>
+                      <label for="payment-method" class="label">Metode Pembayaran</label>
+                      <select class="form-control" id="payment-method" required>
+                        <option value="COD">COD (Bayar di Tempat)</option>
+                        <option value="Transfer">Transfer Bank</option>
+                      </select>
+                    </div>
+                    <!-- Alamat Penerima -->
+                    <div class="form-group col-md-12">
+                      <label for="address" class="label">Alamat Penerima</label>
+                      <input type="text" class="form-control" id="address" placeholder="Masukkan Alamat Lengkap" required>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="time" class="label">Ambil Pesanan</label>
@@ -349,7 +358,7 @@
                   </div>
                   <div class="row justify-content-center">
                     <div class="col-md-4">
-                      <button type="button" class="btn btn-primary btn-outline-primary btn-block" onclick="sendWhatsAppOrder()">Reserve Now</button>
+                      <button type="button" class="btn btn-primary btn-outline-primary btn-block" onclick="sendWhatsAppOrder()">Pesan Sekarang</button>
                     </div>
                   </div>
                 </form>
@@ -382,7 +391,8 @@
         function sendWhatsAppOrder() {
           const name = document.getElementById('name').value;
           const phone = document.getElementById('phone').value;
-          const date = document.getElementById('date').value;
+          const paymentMethod = document.getElementById('payment-method').value;
+          const address = document.getElementById('address').value;
           const time = document.getElementById('time').value;
         
           let menuList = '';
@@ -393,7 +403,7 @@
             menuList += `${index + 1}. ${menu} - ${portion} porsi\n`;
           });
         
-          const message = `Halo, saya ${name} ingin memesan:\n${menuList}\nTanggal Pesan: ${date}\nWaktu Ambil: ${time}\nNomor HP: ${phone}`;
+          const message = `Halo, saya ${name} ingin memesan:\n${menuList}\nWaktu Ambil: ${time}\nNomor HP: ${phone}\nMetode Pembayaran: ${paymentMethod}\nAlamat: ${address}`;
           const whatsappUrl = `https://wa.me/6287874254138?text=${encodeURIComponent(message)}`;
         
           // Redirect ke WhatsApp
@@ -401,7 +411,6 @@
         }
         </script>
         
-
         <footer class="ftco-footer">
           <div class="container">
             
