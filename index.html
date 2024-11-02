@@ -340,16 +340,16 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="date" class="label">Tanggal Pemesanan</label>
-                      <input type="date" class="form-control" id="date" required>
+                      <input type="text" class="form-control" id="date" placeholder="YYYY-MM-DD" required>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="time" class="label">Ambil Pesanan</label>
-                      <input type="time" class="form-control" id="time" required min="08:00" max="16:00">
+                      <input type="text" class="form-control" id="time" placeholder="HH:MM" required>
                     </div>
                   </div>
                   <div class="row justify-content-center">
                     <div class="col-md-4">
-                      <button type="button" class="btn btn-primary btn-outline-primary btn-block" onclick="sendWhatsAppOrder()">Pesan Sekarang</button>
+                      <button type="button" class="btn btn-primary btn-outline-primary btn-block" onclick="sendWhatsAppOrder()">Reserve Now</button>
                     </div>
                   </div>
                 </form>
@@ -385,11 +385,6 @@
           const date = document.getElementById('date').value;
           const time = document.getElementById('time').value;
         
-          if (!date || !time) {
-            alert("Tanggal dan waktu pemesanan harus diisi!");
-            return;
-          }
-        
           let menuList = '';
           const dimsumOptions = document.querySelectorAll('.dimsum-options-wrap .form-field-icon-wrap');
           dimsumOptions.forEach((option, index) => {
@@ -406,7 +401,6 @@
         }
         </script>
         
-
 
         <footer class="ftco-footer">
           <div class="container">
